@@ -9,10 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/location")
 public class LocationController {
 
-    @GetMapping
-    public String Location getLocation () {
-        Location location = new Location();
+    public String Location; String getLocation () {
+
+        //Location location = new Location();
         return "manizales";
     }
 }
-"

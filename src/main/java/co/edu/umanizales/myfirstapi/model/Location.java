@@ -7,7 +7,7 @@ import lombok.Setter;
 
 public class Location {
     @Getter
-    @Setter}@AllArgsConstructor
+    @Setter
     private String code;
     private String description;
 

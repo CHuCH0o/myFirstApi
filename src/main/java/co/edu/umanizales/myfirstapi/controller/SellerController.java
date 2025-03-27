@@ -21,6 +21,6 @@ public class SellerController {
         Seller Miguel = new Seller("Miguel","Ocampo",(byte)19,'M',"24828506",Manizales);
         Seller Nicolas = new Seller("Nicolas","Ordoñez",(byte)18,'M',"75091129",Manizales);
         Seller Sofia = new Seller("Sofia","Calvo",(byte)17,'F',"24821306",Manizales);
-        return Mateo;
+        return Valeria;
     }
 }

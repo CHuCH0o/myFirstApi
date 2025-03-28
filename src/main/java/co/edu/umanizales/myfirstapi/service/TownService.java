@@ -89,4 +89,22 @@ public class TownService {
                 .filter(t -> t.getStateCode().equals(code))
                 .toList();
     }
+
+    // Listar todos los departamentos (states) con su información
+
+    public List<Town> getAllStates() {
+
+        // Agrupamos por código de state para evitar duplicados
+
+        return towns.stream()
+                .collect(java.util.stream.Collectors.toMap(
+                        Town::getStateCode,
+                        t -> t, // usa el primero que encuentre
+                        (t1, t2) -> t1 // en caso de repetidos, conserva el primero
+                ))
+                .values()
+                .stream()
+                .toList();
+    }
+
 }

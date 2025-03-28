@@ -56,4 +56,14 @@ public class TownController {
     public List<Town> getByStateCode(@PathVariable String code) {
         return townService.findByStateCode(code);
     }
+
+    // GET /davipola/states
+
+    @GetMapping("/states")
+    public List<Town> getAllStates() {
+        return townService.getAllStates();
+    }
+
 }
+
+

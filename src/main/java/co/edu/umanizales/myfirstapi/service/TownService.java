@@ -1,8 +1,8 @@
 package co.edu.umanizales.myfirstapi.service;
+import co.edu.umanizales.myfirstapi.MyFirstApiApplication;
 import co.edu.umanizales.myfirstapi.model.State;
 import co.edu.umanizales.myfirstapi.model.Town;
 import org.springframework.stereotype.Service;
-import java.text.Normalizer;
 import javax.annotation.PostConstruct;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -25,28 +25,22 @@ public class TownService {
      */
 
 
-    // Función para normalizar texto (eliminar tildes y pasar a minúsculas)
-    private String normalizeText(String text) {
-        return Normalizer.normalize(text, Normalizer.Form.NFD)
-                .replaceAll("\\p{InCombiningDiacriticalMarks}+", "")
-                .toLowerCase();
-    }
-
     // --- Métodos de búsqueda usando normalizeText ---
 
     public List<Town> findByTownName(String name) {
-        String normalizedInput = normalizeText(name);
+        String normalizedInput = MyFirstApiApplication.normalizeText(name);
         return towns.stream()
-                .filter(t -> normalizeText(t.getTownName()).contains(normalizedInput))
+                .filter(t -> MyFirstApiApplication.normalizeText(t.getTownName()).contains(normalizedInput))
                 .toList();
     }
 
     public List<Town> findByStateName(String name) {
-        String normalizedInput = normalizeText(name);
+        String normalizedInput = MyFirstApiApplication.normalizeText(name);
         return towns.stream()
-                .filter(t -> normalizeText(t.getStateName()).contains(normalizedInput))
+                .filter(t -> MyFirstApiApplication.normalizeText(t.getStateName()).contains(normalizedInput))
                 .toList();
     }
+
 
     @PostConstruct
     public void loadCsv() {

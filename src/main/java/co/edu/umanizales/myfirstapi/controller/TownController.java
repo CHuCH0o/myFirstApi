@@ -1,5 +1,5 @@
 package co.edu.umanizales.myfirstapi.controller;
-
+import co.edu.umanizales.myfirstapi.model.State;
 import co.edu.umanizales.myfirstapi.model.Town;
 import co.edu.umanizales.myfirstapi.service.TownService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,10 +57,9 @@ public class TownController {
         return townService.findByStateCode(code);
     }
 
-    // GET /davipola/states
 
     @GetMapping("/states")
-    public List<Town> getAllStates() {
+    public List<State> getAllStates() {
         return townService.getAllStates();
     }
 

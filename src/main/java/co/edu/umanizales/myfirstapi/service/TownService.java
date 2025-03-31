@@ -1,8 +1,9 @@
 package co.edu.umanizales.myfirstapi.service;
+
 import co.edu.umanizales.myfirstapi.MyFirstApiApplication;
-import co.edu.umanizales.myfirstapi.model.State;
 import co.edu.umanizales.myfirstapi.model.Town;
 import org.springframework.stereotype.Service;
+
 import javax.annotation.PostConstruct;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,61 +13,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Esta clase se encarga de leer el archivo CSV al iniciar la aplicación
- * y de ofrecer métodos para buscar towns por nombre o código.
+ * Servicio para gestionar la información de municipios (towns)
  */
 @Service
 public class TownService {
 
     private final List<Town> towns = new ArrayList<>();
 
-    /* Este metodo se ejecuta automáticamente cuando se inicia la aplicación
-     * lee linea a linea el archivo CSV y almacena los datos en la lista Town
+    /**
+     * Carga el archivo CSV al iniciar la aplicación
      */
-
-
-    // --- Métodos de búsqueda usando normalizeText ---
-
-    public List<Town> findByTownName(String name) {
-        String normalizedInput = MyFirstApiApplication.normalizeText(name);
-        return towns.stream()
-                .filter(t -> MyFirstApiApplication.normalizeText(t.getTownName()).contains(normalizedInput))
-                .toList();
-    }
-
-    public List<Town> findByStateName(String name) {
-        String normalizedInput = MyFirstApiApplication.normalizeText(name);
-        return towns.stream()
-                .filter(t -> MyFirstApiApplication.normalizeText(t.getStateName()).contains(normalizedInput))
-                .toList();
-    }
-
-
     @PostConstruct
     public void loadCsv() {
-        // Ruta del archivo CSV en la carpeta del paquete myfirstapi
         String path = Paths.get(System.getProperty("user.dir"),
                 "src", "main", "java", "co", "edu", "umanizales", "myfirstapi",
-                "DIVIPOLA-_C_digos_municipios_20250326.csv"
-        ).toString();
+                "DIVIPOLA-_C_digos_municipios_20250326.csv").toString();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(path, StandardCharsets.UTF_8))) {
-            reader.readLine(); // Saltar el encabezado
+            reader.readLine(); // Saltar encabezado
             String line;
-
             while ((line = reader.readLine()) != null) {
-                // Separación por comas con soporte para comillas
                 String[] parts = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)", -1);
-
                 if (parts.length >= 7) {
                     towns.add(new Town(
-                            parts[0].trim(), // Código estado
-                            parts[1].trim(), // Nombre estado
-                            parts[2].trim(), // Código municipio
-                            parts[3].trim(), // Nombre municipio
-                            parts[4].trim(), // Tipo
-                            parts[5].trim(), // Longitud
-                            parts[6].trim()  // Latitud
+                            parts[0].trim(),
+                            parts[1].trim(),
+                            parts[2].trim(),
+                            parts[3].trim(),
+                            parts[4].trim(),
+                            parts[5].trim(),
+                            parts[6].trim()
                     ));
                 }
             }
@@ -75,39 +51,38 @@ public class TownService {
         }
     }
 
-    /*
-    Métodos para consultar por diferentes criterios
+    /**
+     * Buscar municipios por nombre (ignora tildes)
      */
+    public List<Town> findByTownName(String name) {
+        String normalizedInput = MyFirstApiApplication.normalizeText(name);
+        return towns.stream()
+                .filter(t -> MyFirstApiApplication.normalizeText(t.getTownName()).contains(normalizedInput))
+                .toList();
+    }
 
-
-    //Metodo para consultar municipio por codigo
+    /**
+     * Buscar municipios por código exacto
+     */
     public List<Town> findByTownCode(String code) {
         return towns.stream()
                 .filter(t -> t.getTownCode().equals(code))
                 .toList();
     }
 
-    //Metodo para consultar departamento por codigo
+    /**
+     * Buscar municipios que pertenezcan a un state (por código)
+     */
     public List<Town> findByStateCode(String code) {
         return towns.stream()
                 .filter(t -> t.getStateCode().equals(code))
                 .toList();
     }
 
-    // Listar todos los departamentos (states) con su información
-
-    public List<State> getAllStates() {
-        return towns.stream()
-                .collect(java.util.stream.Collectors.toMap(
-                        Town::getStateCode,
-                        Town::getStateName,
-                        (name1, name2) -> name1 // en caso de duplicados
-                ))
-                .entrySet()
-                .stream()
-                .map(e -> new State(e.getKey(), e.getValue()))
-                .sorted((s1, s2) -> s1.getStateCode().compareTo(s2.getStateCode()))
-                .toList();
+    /**
+     * Retorna todos los municipios cargados
+     */
+    public List<Town> getAllTowns() {
+        return towns;
     }
-
 }

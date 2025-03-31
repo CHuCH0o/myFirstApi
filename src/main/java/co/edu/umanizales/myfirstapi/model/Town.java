@@ -1,24 +1,19 @@
 package co.edu.umanizales.myfirstapi.model;
 
 /**
- * Representa un municipio (town) con toda su información,
- * incluyendo su estado (departamento), tipo, longitud y latitud.
+ * Clase que representa un municipio
+ * Contiene información geográfica y administrativa
  */
 public class Town {
-    private String stateCode;
-    private String stateName;
-    private String townCode;
-    private String townName;
-    private String type;
-    private String longitude;
-    private String latitude;
+    private String stateCode;    // Código del departamento
+    private String stateName;    // Nombre del departamento
+    private String townCode;     // Código del municipio
+    private String townName;     // Nombre del municipio
+    private String type;         // Tipo: Municipio, Isla, etc.
+    private String longitude;    // Longitud geográfica
+    private String latitude;     // Latitud geográfica
 
-    /**
-     * Constructor que inicializa todos los campos de la clase Town como objetos
-     * (son las variables creadas para almacenar la informacion de los campos del archivo CSV).
-     */
-    public Town(String stateCode, String stateName,
-                String townCode, String townName,
+    public Town(String stateCode, String stateName, String townCode, String townName,
                 String type, String longitude, String latitude) {
         this.stateCode = stateCode;
         this.stateName = stateName;
@@ -28,8 +23,6 @@ public class Town {
         this.longitude = longitude;
         this.latitude = latitude;
     }
-
-    // Getters (permite la lectura por parte de la clase controller para los EndPoints)
 
     public String getStateCode() { return stateCode; }
     public String getStateName() { return stateName; }

@@ -18,8 +18,8 @@ public class TownController {
     private TownService townService;
 
     /**
-     * Buscar por nombre de municipio
      * GET /davipola/town/name/{name}
+     * Buscar municipio por nombre
      */
     @GetMapping("/name/{name}")
     public List<Town> getByTownName(@PathVariable String name) {
@@ -27,8 +27,8 @@ public class TownController {
     }
 
     /**
-     * Buscar por código de municipio
      * GET /davipola/town/code/{code}
+     * Buscar municipio por código
      */
     @GetMapping("/code/{code}")
     public List<Town> getByTownCode(@PathVariable String code) {
@@ -36,11 +36,20 @@ public class TownController {
     }
 
     /**
-     * Listar municipios de un departamento por código de departamento
      * GET /davipola/town/state/{stateCode}
+     * Listar municipios por código de departamento
      */
     @GetMapping("/state/{stateCode}")
     public List<Town> getByStateCode(@PathVariable String stateCode) {
         return townService.findByStateCode(stateCode);
+    }
+
+    /**
+     * GET /davipola/town/state/name/{name}
+     * Buscar municipios por nombre de departamento
+     */
+    @GetMapping("/state/name/{name}")
+    public List<Town> getByStateName(@PathVariable String name) {
+        return townService.findByStateName(name);
     }
 }

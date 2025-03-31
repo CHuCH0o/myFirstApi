@@ -1,7 +1,18 @@
 package co.edu.umanizales.myfirstapi.model;
 
 /**
- * DTO que representa un departamento con su municipio principal asociado
+ * DTO para listar un departamento junto con su municipio principal.
+ *
+ * Ejemplo de respuesta:
+ * {
+ *   "stateCode": "05",
+ *   "stateName": "Antioquia",
+ *   "townCode": "05001",
+ *   "townName": "Medellín",
+ *   "type": "Municipio",
+ *   "longitude": "-75.58",
+ *   "latitude": "6.24"
+ * }
  */
 public class StateWithTownDTO {
 

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Controlador REST para departamentos
+ * Controlador REST para departamentos (states)
  */
 @RestController
 @RequestMapping("/davipola")
@@ -18,7 +18,8 @@ public class StateController {
     private StateService stateService;
 
     /**
-     * Obtiene todos los departamentos junto con su municipio principal
+     * GET /davipola/states
+     * Listar todos los departamentos junto con su municipio principal
      */
     @GetMapping("/states")
     public List<StateWithTownDTO> getStatesWithMainTown() {

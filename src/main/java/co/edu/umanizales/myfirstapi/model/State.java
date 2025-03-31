@@ -1,11 +1,14 @@
 package co.edu.umanizales.myfirstapi.model;
 
 /**
- * Clase simple que representa un Departamento (State)
+ * Modelo que representa un departamento.
+ *
+ * Ejemplo:
+ * State s = new State("05", "Antioquia");
  */
 public class State {
-    private String stateCode;    // Código del departamento
-    private String stateName;    // Nombre del departamento
+    private String stateCode;
+    private String stateName;
 
     public State(String stateCode, String stateName) {
         this.stateCode = stateCode;

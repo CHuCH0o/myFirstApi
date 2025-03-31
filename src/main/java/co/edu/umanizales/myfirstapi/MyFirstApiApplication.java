@@ -5,9 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.text.Normalizer;
 
 /**
- * Clase principal de arranque de Spring Boot
- * Además contiene la función utilitaria normalizeText()
- * para eliminar tildes y normalizar texto.
+ * Clase principal para iniciar la API REST con Spring Boot.
+ * También contiene una función utilitaria para normalizar textos,
+ * eliminando tildes y volviendo todo a minúsculas.
  */
 @SpringBootApplication
 public class MyFirstApiApplication {
@@ -17,10 +17,9 @@ public class MyFirstApiApplication {
     }
 
     /**
-     * Método utilitario para normalizar texto
-     * - elimina tildes
-     * - convierte a minúsculas
-     * - deja listo para búsquedas insensibles
+     * Normaliza un texto eliminando tildes y convirtiendo a minúsculas
+     * @param text texto original
+     * @return texto normalizado
      */
     public static String normalizeText(String text) {
         return Normalizer.normalize(text, Normalizer.Form.NFD)

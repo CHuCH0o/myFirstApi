@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Servicio para la gestión de departamentos y su municipio principal
+ * Servicio para la gestión de departamentos y su municipio principal.
  */
 @Service
 public class StateService {
@@ -19,14 +19,17 @@ public class StateService {
     }
 
     /**
-     * Obtiene todos los departamentos con su municipio principal
+     * Obtiene todos los departamentos con su municipio principal asociado
+     *
+     * Ejemplo de endpoint:
+     * GET /davipola/states
      */
     public List<StateWithTownDTO> getStatesWithMainTown() {
         return townService.getAllTowns().stream()
                 .collect(java.util.stream.Collectors.toMap(
                         Town::getStateCode,
                         t -> t,
-                        (t1, t2) -> t1 // toma el primero
+                        (t1, t2) -> t1
                 ))
                 .values()
                 .stream()

@@ -1,17 +1,19 @@
 package co.edu.umanizales.myfirstapi.model;
 
 /**
- * Clase que representa un municipio
- * Contiene información geográfica y administrativa
+ * Modelo que representa un municipio de Colombia.
+ *
+ * Ejemplo de uso:
+ * Town t = new Town("05", "Antioquia", "05001", "Medellín", "Municipio", "-75.58", "6.24");
  */
 public class Town {
-    private String stateCode;    // Código del departamento
-    private String stateName;    // Nombre del departamento
-    private String townCode;     // Código del municipio
-    private String townName;     // Nombre del municipio
-    private String type;         // Tipo: Municipio, Isla, etc.
-    private String longitude;    // Longitud geográfica
-    private String latitude;     // Latitud geográfica
+    private String stateCode;
+    private String stateName;
+    private String townCode;
+    private String townName;
+    private String type;
+    private String longitude;
+    private String latitude;
 
     public Town(String stateCode, String stateName, String townCode, String townName,
                 String type, String longitude, String latitude) {

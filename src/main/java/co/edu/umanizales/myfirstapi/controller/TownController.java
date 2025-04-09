@@ -11,14 +11,14 @@ import java.util.List;
  * Controlador REST para operaciones sobre municipios (towns)
  */
 @RestController
-@RequestMapping("/davipola/town")
+@RequestMapping("/davipola")
 public class TownController {
 
     @Autowired
     private TownService townService;
 
     /**
-     * GET /davipola/town/name/{name}
+     * GET /davipola/name/{name}
      * Buscar municipio por nombre
      */
     @GetMapping("/name/{name}")
@@ -27,7 +27,7 @@ public class TownController {
     }
 
     /**
-     * GET /davipola/town/code/{code}
+     * GET /davipola/code/{code}
      * Buscar municipio por código
      */
     @GetMapping("/code/{code}")
@@ -36,10 +36,10 @@ public class TownController {
     }
 
     /**
-     * GET /davipola/town/state/{stateCode}
+     * GET /davipola/state/{stateCode}
      * Listar municipios por código de departamento
      */
-    @GetMapping("/state/{stateCode}")
+    @GetMapping("/state/code/{stateCode}")
     public List<Town> getByStateCode(@PathVariable String stateCode) {
         return townService.findByStateCode(stateCode);
     }
@@ -51,5 +51,11 @@ public class TownController {
     @GetMapping("/state/name/{name}")
     public List<Town> getByStateName(@PathVariable String name) {
         return townService.findByStateName(name);
+    }
+
+
+    @GetMapping("/towns")
+    public List<Town> getAllTowns() {
+        return townService.getAllTowns();
     }
 }

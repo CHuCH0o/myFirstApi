@@ -13,6 +13,7 @@ import java.text.Normalizer;
 public class MyFirstApiApplication {
 
     public static void main(String[] args) {
+        System.out.printf(System.getProperty("user.dir"));
         SpringApplication.run(MyFirstApiApplication.class, args);
     }
 

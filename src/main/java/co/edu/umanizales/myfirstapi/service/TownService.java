@@ -16,7 +16,7 @@ import java.util.List;
  * Servicio encargado de cargar y consultar municipios desde el CSV.
  */
 @Service
-public class TownService {
+public  class TownService {
 
     private final List<Town> towns = new ArrayList<>();
 
@@ -24,7 +24,7 @@ public class TownService {
      * Carga de datos desde CSV al iniciar la aplicación
      */
     @PostConstruct
-    public void loadCsv() {
+    public  void loadCsv() {
         String path = Paths.get(System.getProperty("user.dir"),
                 "src", "main", "java", "co", "edu", "umanizales", "myfirstapi",
                 "DIVIPOLA-_C_digos_municipios_20250326.csv").toString();
@@ -47,7 +47,8 @@ public class TownService {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+           e.printStackTrace();
+
         }
     }
 
